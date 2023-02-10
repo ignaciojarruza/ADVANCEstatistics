@@ -13,9 +13,23 @@ library(readxl)
 library(dplyr)
 
 # read in the excel file
-event_data <- read_excel("faculty_event_list.xlsx")
-head(event_data)
+file_path <- "faculty_event_list.xlsx"
+event_data <- read_excel(file_path)
+
+
 #TODO: Add attendance excel sheets iteratively
+file_path <- "attendance-sheets/01.28.2022 - WOC Sip & Share.xlsx"
+topic_table <- read_excel(file_path, range = "A1:G2")
+attendance_data <- read_excel(file_path)
+attendance_data <- attendance_data[-c(0:3), -c(2:7)]
+
+colnames(attendance_data)[1] <- "Names"
+head(topic_table)
+head(attendance_data)
+
+attendance_list <- list()
+attendance_list[[topic_table$Topic]] <- attendance_data
+#names(attendance_list)
 ```
 
 ## Cleaning the data
