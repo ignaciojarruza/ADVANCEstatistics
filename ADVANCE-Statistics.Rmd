@@ -20,7 +20,17 @@ head(event_data)
 
 ## Cleaning the data
 The data set may contain missing or inconsistent values that need to be cleaned before statistics can be calculated.
+```{r}
+event_data <- event_data[, c("Type", "Event Name", "Audience", "RSVPS", "Attendees")]
+event_data <- event_data %>%
+  mutate(Attendees = coalesce(Attendees, 0), RSVPS = coalesce(RSVPS, 0))
 
+#Remove Administrative Forums from Dataframe
+event_data <- event_data[!(event_data$Type=="Administrative Forums"),]
+
+# view the first few rows of the data
+print(event_data)
+```
 ## Calculating descriptive statistics 
 This includes (1) summary, (2) mean, (3) standard deviation. This section provides insight into the central tendency and dispersion of the data.
 
