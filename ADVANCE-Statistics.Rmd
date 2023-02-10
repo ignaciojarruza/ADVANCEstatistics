@@ -7,6 +7,16 @@ This R program calculates descriptive statistics and displays graphical represen
 
 ## Importing the data set
 The data set containing information about faculty events and participant attendance is imported into R.
+```{r}
+# load the readxl & dplyr packages
+library(readxl)
+library(dplyr)
+
+# read in the excel file
+event_data <- read_excel("faculty_event_list.xlsx")
+head(event_data)
+#TODO: Add attendance excel sheets iteratively
+```
 
 ## Cleaning the data
 The data set may contain missing or inconsistent values that need to be cleaned before statistics can be calculated.
@@ -18,8 +28,5 @@ This includes (1) summary, (2) mean, (3) standard deviation. This section provid
 These functions provide visual representation of the data distribution and patters.
 
 
-```{r}
-plot(cars)
-```
 
 
