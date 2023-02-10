@@ -1,0 +1,25 @@
+---
+title: "ADVANCE Attendance Statistics & Visualization"
+output: html_notebook
+---
+## Abstract
+This R program calculates descriptive statistics and displays graphical representations of data on faculty events and participant attendance. It provides insights into the number of events organized, the total number of participants, the average attendance per event, and other relevant metrics. The program also visualizes the data in the form of histograms, bar plots, and scatter plots to provide a more comprehensive understanding of the data distribution and patterns. The program enables users to make informed decisions based on the analyzed data and helps in evaluating the effectiveness of faculty events in engaging participants.
+
+## Importing the data set
+The data set containing information about faculty events and participant attendance is imported into R.
+
+## Cleaning the data
+The data set may contain missing or inconsistent values that need to be cleaned before statistics can be calculated.
+
+## Calculating descriptive statistics 
+This includes (1) summary, (2) mean, (3) standard deviation. This section provides insight into the central tendency and dispersion of the data.
+
+## Visualizing the Data
+These functions provide visual representation of the data distribution and patters.
+
+
+```{r}
+plot(cars)
+```
+
+
