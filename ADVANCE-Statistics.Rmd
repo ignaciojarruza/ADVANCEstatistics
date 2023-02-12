@@ -18,18 +18,44 @@ event_data <- read_excel(file_path)
 
 
 #TODO: Add attendance excel sheets iteratively
-file_path <- "attendance-sheets/01.28.2022 - WOC Sip & Share.xlsx"
-topic_table <- read_excel(file_path, range = "A1:G2")
-attendance_data <- read_excel(file_path)
-attendance_data <- attendance_data[-c(0:3), -c(2:7)]
-
-colnames(attendance_data)[1] <- "Names"
-head(topic_table)
-head(attendance_data)
-
+folder_path <- "attendance-sheets"
+excel_files <- list.files(path = folder_path, pattern = "*.xlsx")
 attendance_list <- list()
-attendance_list[[topic_table$Topic]] <- attendance_data
-#names(attendance_list)
+
+for (file in excel_files) {
+  file_path <- file.path(folder_path, file)
+  print(file_path)
+  attendance_data <- read_excel(file_path)
+  topic_table <- read_excel(file_path, range = "A1:G2")
+  head(topic_table)
+  attendance_data <- attendance_data[-c(0:3), -c(2:7)]
+  colnames(attendance_data)[1] <- "Names"
+  #attendance_list[[topic_table]] <- attendance_data
+}
+
+# print(excel_files)
+# lapply(excel_files, function(x) {
+#   attendance_data <- read_excel(x)
+#   head(attendance_data)
+#   topic_table <- read_excel(x, range = "A1:G2")
+#   attendance_data <- attendance_data[-c(0:3), -c(2:7)]
+#   colnames(attendance_data)[1] <- "Names"
+#   attendance_list[[topic_table$Topic]] <- attendance_data
+# })
+names(attendance_list)
+
+# #file_path <- "attendance-sheets/01.28.2022 - WOC Sip & Share.xlsx"
+# topic_table <- read_excel(file_path, range = "A1:G2")
+# attendance_data <- read_excel(file_path)
+# attendance_data <- attendance_data[-c(0:3), -c(2:7)]
+# 
+# colnames(attendance_data)[1] <- "Names"
+# head(topic_table)
+# head(attendance_data)
+# 
+# attendance_list <- list()
+# attendance_list[[topic_table$Topic]] <- attendance_data
+# #names(attendance_list)
 ```
 
 ## Cleaning the data
