@@ -7,10 +7,41 @@ This R program calculates descriptive statistics and displays graphical represen
 
 ## Importing the data set
 The data set containing information about faculty events and participant attendance is imported into R.
+```{r}
+# load the readxl & dplyr packages
+library(readxl)
+library(dplyr)
+
+# read in the excel file
+file_path <- "faculty_event_list.xlsx"
+event_data <- read_excel(file_path)
+
+#read in the attendance sheets available
+folder_path <- "attendance-sheets-format"
+excel_files <- list.files(path = folder_path, pattern = "*.xlsx")
+attendance_list <- list()
+
+for (file in excel_files) {
+  file_path <- file.path(folder_path, file)
+  attendance_data <- read_excel(file_path)
+  topic <- attendance_data$Topic[1]
+  attendance_list[[topic]] <- attendance_data[4:nrow(attendance_data),]
+}
+```
 
 ## Cleaning the data
 The data set may contain missing or inconsistent values that need to be cleaned before statistics can be calculated.
+```{r}
+event_data <- event_data[, c("Type", "Event Name", "Audience", "RSVPS", "Attendees")]
+event_data <- event_data %>%
+  mutate(Attendees = coalesce(Attendees, 0), RSVPS = coalesce(RSVPS, 0))
 
+#Remove Administrative Forums from Dataframe
+event_data <- event_data[!(event_data$Type=="Administrative Forums"),]
+
+# view the first few rows of the data
+print(event_data)
+```
 ## Calculating descriptive statistics 
 This includes (1) summary, (2) mean, (3) standard deviation. This section provides insight into the central tendency and dispersion of the data.
 
@@ -18,8 +49,5 @@ This includes (1) summary, (2) mean, (3) standard deviation. This section provid
 These functions provide visual representation of the data distribution and patters.
 
 
-```{r}
-plot(cars)
-```
 
 
